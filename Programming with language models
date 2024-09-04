@@ -2,7 +2,6 @@ import java.util.*;
 
 public class SentimentAnalysis {
 
-    // List of positive and negative keywords
     private static final List<String> positiveWords = Arrays.asList("good", "great", "happy", "excellent", "awesome", "positive", "love", "nice", "fantastic");
     private static final List<String> negativeWords = Arrays.asList("bad", "terrible", "sad", "horrible", "awful", "negative", "hate", "poor", "worst");
 
@@ -19,10 +18,8 @@ public class SentimentAnalysis {
         int positiveScore = 0;
         int negativeScore = 0;
 
-        // Convert text to lowercase to handle case sensitivity
         String[] words = text.toLowerCase().split("\\s+");
 
-        // Count positive and negative words
         for (String word : words) {
             if (positiveWords.contains(word)) {
                 positiveScore++;
@@ -31,7 +28,6 @@ public class SentimentAnalysis {
             }
         }
 
-        // Determine sentiment based on scores
         if (positiveScore > negativeScore) {
             return "Positive";
         } else if (negativeScore > positiveScore) {
