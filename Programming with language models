@@ -1,0 +1,43 @@
+import java.util.*;
+
+public class SentimentAnalysis {
+
+    // List of positive and negative keywords
+    private static final List<String> positiveWords = Arrays.asList("good", "great", "happy", "excellent", "awesome", "positive", "love", "nice", "fantastic");
+    private static final List<String> negativeWords = Arrays.asList("bad", "terrible", "sad", "horrible", "awful", "negative", "hate", "poor", "worst");
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter a text string:");
+        String input = scanner.nextLine();
+
+        String sentiment = analyzeSentiment(input);
+        System.out.println("The sentiment of the text is: " + sentiment);
+    }
+
+    public static String analyzeSentiment(String text) {
+        int positiveScore = 0;
+        int negativeScore = 0;
+
+        // Convert text to lowercase to handle case sensitivity
+        String[] words = text.toLowerCase().split("\\s+");
+
+        // Count positive and negative words
+        for (String word : words) {
+            if (positiveWords.contains(word)) {
+                positiveScore++;
+            } else if (negativeWords.contains(word)) {
+                negativeScore++;
+            }
+        }
+
+        // Determine sentiment based on scores
+        if (positiveScore > negativeScore) {
+            return "Positive";
+        } else if (negativeScore > positiveScore) {
+            return "Negative";
+        } else {
+            return "Neutral";
+        }
+    }
+}
